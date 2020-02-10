@@ -1,0 +1,6 @@
+<h2>You may know me as Dkahir, but who I am is far less important than who you are. So, who are you?</h2>
+<%= form_for @current_game, :url => sp_name_path(@current_game) do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :player_name %>
+    <%= f.submit %>
+<%end%>

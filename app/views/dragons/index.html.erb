@@ -1,0 +1,7 @@
+<h2><% @dragons.each do |dragon| %>
+<p>Name: <%= dragon.name %> | Wing Span: <%= dragon.wing_span %> |
+ Color: <%= dragon.color %> | Pattern: <%= dragon.pattern %> |
+ Hunger: <%= dragon.hunger %> | Health: <%= dragon.health %></p>
+<%end%></h2>
+<br><br>
+<%= button_to "back", '/game/menu', method: :get %>

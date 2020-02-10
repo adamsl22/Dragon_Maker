@@ -1,0 +1,5 @@
+<%= form_for @current_game, :url => sp_name_path(@current_game) do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :player_name %>
+    <%= f.submit %>
+<%end%>

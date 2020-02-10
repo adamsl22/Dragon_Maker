@@ -1,0 +1,22 @@
+<h2>Select dragons for your raid on <%= @raid.village.name %></h2>
+<br><br>
+<% @dragons.each do |dragon| %>
+<p><%= dragon.name %> | Hunger: <%= dragon.hunger %></p>
+<%end%>
+<br><br>
+<h2>Select a dragon or press 'done'</h2>
+<%= form_with url: pairing_path(@raid.id) do |f| %>
+    <%= f.label :dragon %>
+    <%= f.collection_select :dragon_id, @dragons, :id, :name %>
+    <%= f.hidden_field :raid_id, value: @raid.id %>
+    <%= f.submit %>
+<%end%>
+<h2>Selected dragons:</h2>
+<% @raid.dragons.each do |dragon| %>
+    <p><%= dragon.name %><p>
+<%end%>
+<% if @raid.dragons.count > 0 %>
+    <%= button_to "done", roll_dice_path(@raid.id), method: :get %>
+<%end%>
+<br><br>
+<%= button_to "back", '/game/menu', method: :get %>

@@ -1,0 +1,12 @@
+<h2>Adam Longman and Andrew Richards present</h2>
+<h1>Dragon Maker</h1>
+<br><br><br>
+<body>Current Game:   Player: <%=@current_game.player_name%>, Turn: <%=@current_game.turn%>, Score: <%=@current_game.score%>
+<br>High Score:     Player: <%=@high_score.player_name%>, Turn: <%=@high_score.turn%>, Score: <%=@high_score.score%></body>
+<br><br><br>
+<form action=<%="/game/single_player"%> method="get">
+    <input type="submit" value="Single Player">
+</form>
+<form action=<%="/game/under_construction"%> method="get">
+    <input type="submit" value="Vs. Mode">
+</form>

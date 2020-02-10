@@ -1,0 +1,9 @@
+<h2>Your raid on <%= @raid.village.name %> has begun!</h2>
+<br>
+Attacking Dragons: <%= @raid.dragons.count %><br>
+Defending Knights: <%= @raid.village.knights %><br>
+<% if @raid.village.slayers > 0 %>
+<%= "Defending Slayers: " + @raid.village.slayers.to_s %>
+<%end%>
+<br><br>
+<%= button_to "Roll Dice", result_path(@raid.id), method: :get %>

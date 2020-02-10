@@ -1,0 +1,30 @@
+<h1>Dragon Maker - Turn <%= @player1.turn %></h1>
+<br>
+<% @notifications.each do |note| %>
+    <p><%= note %></p>
+<%end%>
+<br>
+<h2>Player: <%= @player1.player_name %> - Score: <%= @player1.score %></h2>
+<br>
+<body>Dragons: <%= @p1d.count %> - Eggs: <%= @player1.eggs %> - Villages: <%= @mpv.count %>
+<br>
+<form action=<%="/game/single_player"%> method="get">
+    <input type="submit" value="1">
+</form> Create a Dragon
+<form action=<%="/game/single_player"%> method="get">
+    <input type="submit" value="2">
+</form> View Dragons
+<form action=<%="/game/single_player"%> method="get">
+    <input type="submit" value="3">
+</form> Check Human Population
+<form action=<%="/game/single_player"%> method="get">
+    <input type="submit" value="4">
+</form> Create a Raid
+<form action=<%="/game/vspass"%> method="get">
+    <input type="submit" value="5">
+</form> Pass
+<form action=<%="/game/help_menu"%> method="get">
+    <input type="submit" value="6">
+</form> Help </body>
+<br><br><br><br>
+Opponent Score: <%= @player2.score %> - Opponent Dragons: <%= @p2d.count %>

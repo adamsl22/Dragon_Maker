@@ -1,0 +1,26 @@
+<h2>Create a Dragon</h2>
+<% if @eggs > 0 %>
+    <%= form_for @dragon do |f| %>
+        <%= f.label :name %>
+        <%= f.text_field :name %><br>
+
+        <%= f.label :wing_span %>
+        <%= f.text_field :wing_span %><br>
+
+        <%= f.label :color %>
+        <%= f.text_field :color %><br>
+
+        <%= f.label :pattern %>
+        <%= f.text_field :pattern %><br>
+
+        <%= f.submit %>
+    <%end%>
+    <% if @errors %>
+        <% @errors.each do |error| %>
+            <p><%= error %></p>
+        <%end%>
+    <%end%>
+<% else %>
+    <%= "You do not have any dragon eggs." %><br>
+    <%= button_to "back", '/game/menu', method: :get %>
+<%end%>

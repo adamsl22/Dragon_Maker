@@ -1,0 +1,10 @@
+<h2> Turn <%= @turn %> - News </h2>
+<br><br>
+<%= @village_news %>
+<br><br>
+<%= @dragon_news %>
+<% if @village_news == nil && @dragon_news == nil %>
+    <%= "none." %>
+<%end%>
+<br><br>
+<%= button_to "Continue", '/game/menu', method: :get %>

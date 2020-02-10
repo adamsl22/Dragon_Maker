@@ -1,0 +1,14 @@
+<h2>Select a village to raid</h2>
+<br>
+<h2><% @villages.each do |village| %>
+    <p>Name: <%= village.name %> | Population: <%= village.population %> |
+     Knights: <%= village.knights %> | Slayers: <%= village.slayers %></p>
+<%end%></h2>
+<br><br>
+<%= form_for @raid do |f| %>
+    <%= f.label :village %>
+    <%= f.collection_select :village_id, @villages, :id, :name %>
+    <%= f.submit %>
+<%end%>
+<br><br>
+<%= button_to "back", '/game/menu', method: :get %>

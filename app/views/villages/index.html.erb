@@ -1,0 +1,6 @@
+<h2><% @villages.each do |village| %>
+<p>Name: <%= village.name %> | Population: <%= village.population %> |
+ Knights: <%= village.knights %> | Slayers: <%= village.slayers %></p>
+<%end%></h2>
+<br><br>
+<%= button_to "back", '/game/menu', method: :get %>

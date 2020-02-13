@@ -181,7 +181,7 @@ class Village < ApplicationRecord
                 news_recipient = unraided_villages.sample
                 news_recipient.update(knights: 1)
                 #@@notifications << UI.soft_announce("News of your dragon raids has spread to #{news_recipient.name}.\n The village has begun training knights in fear of your \nattacks.", "red")
-                @@notifications << "News of your dragon raids has spread to #{news_recipient.name}.\n The village has begun training knights in fear of your \nattacks."
+                @@notifications << "News of your dragon raids has spread to #{news_recipient.name}. The village has begun training knights in fear of your attacks."
             end
         end
     end
@@ -211,7 +211,7 @@ class Village < ApplicationRecord
             new_slayers = slayer_home.slayers + 1
             slayer_home.update(slayers: new_slayers)
             #@@notifications << UI.soft_announce("The people are learning how to better kill dragons. A\nslayer has emerged who poses a grave threat!", "red")
-            @@notifications << "The people are learning how to better kill dragons. A\nslayer has emerged who poses a grave threat!"
+            @@notifications << "The people are learning how to better kill dragons. A slayer has emerged who poses a grave threat!"
         elsif turn == 30 || turn == 40
             self.new_slayer(mode)
         elsif turn > 49 && turn < 100
@@ -285,10 +285,10 @@ class Village < ApplicationRecord
         turn = GameData.current_game.turn
         notifications = []
         #UI.announce("Knights from #{attacking_village.name} are attacking!", "red")
-        notifications << "Knights from #{attacking_village.name} are attacking!\n"
+        notifications << "Knights from #{attacking_village.name} are attacking!"
         attacking_knights = self.attacking_knights(turn)
         #UI.announce("#{attacking_knights} knights approach your dragons.", "red")
-        notifications << "#{attacking_knights} knights approach your dragons.\n"
+        notifications << "#{attacking_knights} knights approach your dragons."
         if attacking_village.slayers > 0
             attacking_slayers = self.attacking_slayers(attacking_village, turn)
             #UI.announce("They are accompanied by #{attacking_slayers} slayers.", "red")
@@ -314,7 +314,7 @@ class Village < ApplicationRecord
         # else
         #     UI.announce("The attackers roll a #{attack_roll}.", "blue")
         # end
-        notifications << "The attackers roll a #{attack_roll}.\n"
+        notifications << "The attackers roll a #{attack_roll}."
         # if your_roll < 3
         #     UI.announce("You roll a #{your_roll}.", "red")
         # elsif your_roll > 4
@@ -322,7 +322,7 @@ class Village < ApplicationRecord
         # else
         #     UI.announce("You roll a #{your_roll}.", "blue")
         # end
-        notifications << "You roll a #{your_roll}.\n"
+        notifications << "You roll a #{your_roll}."
         #DV
         defending_dragons = Dragon.all.count
         outnumbered_ratio = attacking_knights.to_f / defending_dragons.to_f
@@ -331,7 +331,7 @@ class Village < ApplicationRecord
         danger_value = danger + roll_difference
         if danger_value < 0.00
             #UI.announce("Your dragons destroyed all attackers!", "green")
-            notifications << "Your dragons destroyed all attackers!\n"
+            notifications << "Your dragons destroyed all attackers!"
             new_knights = attacking_village.knights - attacking_knights
             attacking_village.update(knights: new_knights)
             if attacking_slayers
@@ -348,7 +348,7 @@ class Village < ApplicationRecord
             new_knights = attacking_village.knights - knights_killed
             attacking_village.update(knights: new_knights)
             #UI.announce("Your dragons killed #{knights_killed} attacking knights!", "green")
-            notifications << "Your dragons killed #{knights_killed} attacking knights!\n"
+            notifications << "Your dragons killed #{knights_killed} attacking knights!"
             GameData.increase_score_by(knights_killed)
             #Slayers
             if attacking_slayers
@@ -358,7 +358,7 @@ class Village < ApplicationRecord
                 new_slayers = attacking_village.slayers - slayers_killed
                 attacking_village.update(slayers: new_slayers)
                 #UI.announce("Your dragons killed #{slayers_killed} attacking slayers!", "green")
-                notifications << "Your dragons killed #{slayers_killed} attacking slayers!\n"
+                notifications << "Your dragons killed #{slayers_killed} attacking slayers!"
                 points = 5 * slayers_killed
                 GameData.increase_score_by(points)
             end
@@ -376,7 +376,7 @@ class Village < ApplicationRecord
             dragons_killed.times do
                 dead_dragon = Dragon.all.sample
                 #UI.announce("#{dead_dragon.name} was killed in the attack!", "red")
-                notifications << "#{dead_dragon.name} was killed in the attack!\n"
+                notifications << "#{dead_dragon.name} was killed in the attack!"
                 Dragon.kill_dragon(dead_dragon)
             end
             #Dragon Injuries

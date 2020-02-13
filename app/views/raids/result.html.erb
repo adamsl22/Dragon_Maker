@@ -1,4 +1,6 @@
 <h2>You roll a <%= @raid.dice_roll %></h2>
-<%= @raid.result %>
+<% @results.each do |result| %>
+    <p><%= result %></p>
+<%end%>
 <br><br>
 <%= button_to "Continue", end_turn_path %>

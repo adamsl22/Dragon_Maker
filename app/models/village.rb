@@ -92,7 +92,7 @@ class Village < ApplicationRecord
             #@@notifications << UI.soft_announce("The people have founded the village of Primeton.", "blue")
             @@notifications << "The people have founded the village of Primeton."
         end
-        village_dice = [1,2,3]
+        village_dice = [1,2,3,4,5]
         population_dice = [10,11,12,13,14,15,16,17,18,19,20]
         settlers = population_dice.sample
         vowels = ["a","e","i","o","u","y"]
@@ -294,7 +294,7 @@ class Village < ApplicationRecord
             #UI.announce("They are accompanied by #{attacking_slayers} slayers.", "red")
             notifications << "They are accompanied by #{attacking_slayers} slayers."
         end
-        return notifications.join
+        return notifications
     end
     def self.attack_result(attacking_village)
         turn = GameData.current_game.turn
@@ -333,10 +333,11 @@ class Village < ApplicationRecord
             #UI.announce("Your dragons destroyed all attackers!", "green")
             notifications << "Your dragons destroyed all attackers!\n"
             new_knights = attacking_village.knights - attacking_knights
+            attacking_village.update(knights: new_knights)
             if attacking_slayers
                 new_slayers = attacking_village.slayers - attacking_slayers
+                attacking_village.update(slayers: new_slayers)
             end
-            attacking_village.update(knights: new_knights, slayers: new_slayers)
         else
             #Knights
             dead_knights = attacking_knights.to_f - danger_value / 2.00
@@ -379,7 +380,7 @@ class Village < ApplicationRecord
                 Dragon.kill_dragon(dead_dragon)
             end
             #Dragon Injuries
-            if dragons_killed < defending_dragons
+            if dragons_killed < defending_dragons && roll_difference > 0
                 injure_chance = (danger_value - 3.5) / 10.00
                 injuries = defending_dragons * injure_chance
                 dragons_injured = injuries.round
@@ -396,7 +397,7 @@ class Village < ApplicationRecord
                 end
             end
         end
-        return notifications.join("\n")
+        return notifications
     end
 
     def self.spv
@@ -411,6 +412,6 @@ class Village < ApplicationRecord
         Village.knights("sp", turn)
         Village.slayers("sp", turn)
         Village.new_village("sp", turn)
-        return @@notifications.join("\n")
+        return @@notifications
     end
 end

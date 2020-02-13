@@ -1,5 +1,7 @@
 <h1>Attack!</h1>
 <br>
-<%= @attack %>
+<% @attack.each do |n| %>
+    <p><%= n %></p>
+<%end%>
 <br><br>
 <%= button_to "Defend!", defend_path(@village.id), method: :get %>

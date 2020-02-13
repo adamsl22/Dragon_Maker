@@ -45,7 +45,7 @@ class Dragon < ApplicationRecord
                 dragon.destroy
             end
         end
-        return notifications.join("\n")
+        return notifications
     end
 
     def self.recovery(mode)

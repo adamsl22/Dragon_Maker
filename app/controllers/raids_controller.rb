@@ -32,6 +32,7 @@ class RaidsController < ApplicationController
     end
     def result
         @raid = Raid.find(params[:id])
+        @results = @raid.result
     end
     private
     def raid_params(*args)

@@ -1,7 +1,7 @@
 <h2>Your raid on <%= @raid.village.name %> has begun!</h2>
 <br>
-Attacking Dragons: <%= @raid.dragons.count %><br>
-Defending Knights: <%= @raid.village.knights %><br>
+Attacking Dragons: <%= @raid.dragons.count %><br><br>
+Defending Knights: <%= @raid.village.knights %><br><br>
 <% if @raid.village.slayers > 0 %>
 <%= "Defending Slayers: " + @raid.village.slayers.to_s %>
 <%end%>

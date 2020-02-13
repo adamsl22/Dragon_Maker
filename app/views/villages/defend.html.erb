@@ -1,5 +1,7 @@
 <h1>Attack!</h1>
 <br>
-<%= @defend %>
+<% @defend.each do |n| %>
+    <p><%= n %></p>
+<%end%>
 <br><br>
 <%= button_to "Continue", '/game/notifications', method: :get %>

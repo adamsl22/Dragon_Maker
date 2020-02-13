@@ -23,7 +23,7 @@ class Raid < ApplicationRecord
         knights_killed = self.village.knights - new_knights.round
         self.village.update(knights: new_knights.round)
         #UI.announce("Your dragons killed #{knights_killed} knights in the raid!", "green")
-        @@notifications << "Your dragons killed #{knights_killed} knights in the raid!\n"
+        @@notifications << "Your dragons killed #{knights_killed} knights in the raid!"
         GameData.increase_score_by(knights_killed)
     end
 
@@ -36,7 +36,7 @@ class Raid < ApplicationRecord
             slayers_killed = self.village.slayers - new_slayers.round
             self.village.update(slayers: new_slayers.round)
             #UI.announce("Your dragons killed #{slayers_killed} slayers in the raid!", "green")
-            @@notifications << "Your dragons killed #{slayers_killed} slayers in the raid!\n"
+            @@notifications << "Your dragons killed #{slayers_killed} slayers in the raid!"
             points = 5 * slayers_killed
             GameData.increase_score_by(points)
         end
@@ -60,7 +60,7 @@ class Raid < ApplicationRecord
             new_pop = self.village.population - victims
             self.village.update(population: new_pop)
             #UI.soft_announce("Your dragons consumed #{victims} people.", "green")
-            @@notifications << "Your dragons consumed #{victims} people.\n\n"
+            @@notifications << "Your dragons consumed #{victims} people."
         end
         if self.village.population < 1
             #UI.soft_announce("#{self.village.name} was destroyed!", "blue")
@@ -69,7 +69,7 @@ class Raid < ApplicationRecord
         elsif self.village.knights == 0
             self.village.update(knights: 1)
             #UI.soft_announce("A knight has appeared in #{self.village.name} to defend the \npeople from further attacks.", "red")
-            @@notifications << "A knight has appeared in #{self.village.name} to defend the \npeople from further attacks."
+            @@notifications << "A knight has appeared in #{self.village.name} to defend the people from further attacks."
         end
     end
 
@@ -84,7 +84,7 @@ class Raid < ApplicationRecord
         dragons_killed.times do
             dead_dragon = healthy_dragons.sample
             #UI.announce("#{dead_dragon.name} died during the raid!", "red")
-            @@notifications << "#{dead_dragon.name} died during the raid!\n"
+            @@notifications << "#{dead_dragon.name} died during the raid!"
             Dragon.kill_dragon(dead_dragon)
             healthy_dragons.delete(dead_dragon)
         end
@@ -97,7 +97,7 @@ class Raid < ApplicationRecord
                 if injured_dragon
                     Dragon.injure_dragon(injured_dragon)
                     #UI.announce("#{injured_dragon.name} was injured in the raid!", "red")
-                    @@notifications << "#{injured_dragon.name} was injured in the raid!\n"
+                    @@notifications << "#{injured_dragon.name} was injured in the raid!"
                     healthy_dragons.delete(injured_dragon)
                 end
             end
@@ -111,19 +111,19 @@ class Raid < ApplicationRecord
                 if egg_dice.sample == 16 || egg_dice.sample == 17 || egg_dice.sample == 18 || egg_dice.sample == 19 || egg_dice.sample == 20
                     GameData.find_egg
                     #UI.announce("Your dragons located a dragon egg!", "green")
-                    @@notifications << "Your dragons located a dragon egg!\n"
+                    @@notifications << "Your dragons located a dragon egg!"
                 end
             elsif Dragon.all.count > 3 && Dragon.all.count < 7
                 if egg_dice.sample == 19 || egg_dice.sample == 20
                     GameData.find_egg
                     #UI.announce("Your dragons located a dragon egg!", "green")
-                    @@notifications << "Your dragons located a dragon egg!\n"
+                    @@notifications << "Your dragons located a dragon egg!"
                 end
             else
                 if egg_dice.sample == 20
                     GameData.find_egg
                     #UI.announce("Your dragons located a dragon egg!", "green")
-                    @@notifications << "Your dragons located a dragon egg!\n"
+                    @@notifications << "Your dragons located a dragon egg!"
                 end
             end
         end
@@ -143,6 +143,6 @@ class Raid < ApplicationRecord
                 dragon.update(health: "Tired")
             end
         end
-        return @@notifications.join("\n")
+        return @@notifications
     end
 end

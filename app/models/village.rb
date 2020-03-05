@@ -363,8 +363,8 @@ class Village < ApplicationRecord
                 GameData.increase_score_by(points)
             end
             #Dragon Deaths
-            if roll_difference > 1
-                death_chance = (danger_value - 5) / 20.00
+            if roll_difference > 2
+                death_chance = (danger_value - 7.5) / 20.00
             else
                 death_chance = 0
             end
@@ -381,8 +381,8 @@ class Village < ApplicationRecord
             end
             #Dragon Injuries
             if dragons_killed < defending_dragons && roll_difference > 0
-                injure_chance = (danger_value - 3.5) / 10.00
-                injuries = defending_dragons * injure_chance
+                injure_chance = (danger_value - 5) / 10.00
+                injuries = (defending_dragons - dragons_killed) * injure_chance
                 dragons_injured = injuries.round
                 if dragons_injured > (defending_dragons - dragons_killed)
                     dragons_injued = defending_dragons - dragons_killed

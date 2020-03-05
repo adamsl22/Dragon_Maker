@@ -1,24 +1,5 @@
-# README
+# Welcome to Dragon Maker by Adam Longman and Andrew Richards
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+After cloning, run rails db:migrate and rails s. The game can then be played on localhost:3000.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Ruby version: 2.6.1p33
